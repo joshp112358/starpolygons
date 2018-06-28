@@ -1,7 +1,6 @@
 function setup() {
   createCanvas(400, 400);
-  angleMode(DEGREES);
-  background('black');
+  background('white');
   nSlider = createSlider(0, 10, 7);
   nSlider.position(20, 20);
   jSlider = createSlider(0, 10, 3);
@@ -9,35 +8,27 @@ function setup() {
 }
 
 function draw() {
-
-  text('Number of Points', 190, 20)
-  text('Connecting Delta', 190, 50)
-  makeNDots(nSlider.value(), jSlider.value());
+  background('white');
+  text('Number of Points '+nSlider.value(), 190, 20)
+  text('Connecting Delta '+ jSlider.value(), 190, 50)
+  makeNDotsAndDrawLines(nSlider.value(), jSlider.value());
 }
 
-function makeNDots(n, j) {
-  var l = []
-  var degree = 360 / n;
-  for (var i = 1; i <= 100; i++) {
+function makeNDotsAndDrawLines(n, j) {
+  var l = [];
+  var degree = 2*PI / n;
+  for (var i = 1; i <= n; i++) {
     var a = i * degree;
     var r = 100;
     var x = r * cos(a) + width / 2;
     var y = r * sin(a) + height / 2;
-    l.push([x, y])
-    fill(0, 255, 255);
+    l.push([x,y]);
+    fill('black');
     noStroke();
     ellipse(x, y, 4, 4);
-
   }
-  console.log(l)
-
-  line(0, 0, width, height)
-
-  for (var i = 1; i <= n; i++) {
-    fill(0, 255, 255);
-    stroke(100);
-    line(l[i][0], l[i][1], l[i + j][0], l[i + j][1]);
-
+  for (var i = 0; i<n; i++){
+    stroke(4);
+    line(l[i][0], l[i][1], l[(i+j)%n][0], l[(i+j)%n][1]);
   }
-  l = []
 }
