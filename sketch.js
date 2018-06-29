@@ -1,9 +1,9 @@
 function setup() {
   createCanvas(400, 400);
   background('white');
-  nSlider = createSlider(0, 10, 7);
+  nSlider = createSlider(0, 20, 7);
   nSlider.position(20, 20);
-  jSlider = createSlider(0, 10, 3);
+  jSlider = createSlider(0, 20, 3);
   jSlider.position(20, 50);
 }
 
